@@ -25,7 +25,11 @@ const auth = async (req, res, next) => {
                 console.log(resp);
                 req.token = token;
                 req.user = resp._source;
-                let checkToken = req.user.tokens.find(tokenA => token);
+                let checkToken = req.user.tokens.find((tokenA) => {
+                    console.log('Token A',tokenA);
+                    console.log('Token',tokenA);
+                   return tokenA ==token;
+                });
                 if (checkToken) {
                     console.log('Token Available');
                 } else {

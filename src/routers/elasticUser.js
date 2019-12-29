@@ -15,7 +15,7 @@ class Person {
     tokens;
 }
 //this route will sign up and send token to UI.
-router.post('/el/signup', async (req, res) => {
+router.post('/api/el/signup', async (req, res) => {
     let p = new Person();
     p.email = 'myemail'
     const enPwd = await bcrypt.hash(req.body.password, 8);
@@ -82,7 +82,8 @@ router.post('/el/signup', async (req, res) => {
         console.log('Failed');
     }
 });
-router.post('/el/login', async (req, res) => {
+router.post('/api/el/login', async (req, res) => {
+  console.log('Hit Server');
      const enPwd = await bcrypt.hash(req.body.password, 8);
     // req.body.password = enPwd;
      let person = {};
@@ -147,12 +148,13 @@ router.post('/el/login', async (req, res) => {
         }
     })
 })
-router.get('/el/signup', auth, (req, res) => {
+
+router.get('/api/el/signup', auth, (req, res) => {
     res.send({ 'message': 'sucessfully logged in' })
 })
 
 
-router.post('/el/logout',  auth, async (req, res) => {
+router.post('/api/el/logout',  auth, async (req, res) => {
     try {
        // console.log(req.user);
         req.user.tokens = [];
@@ -169,7 +171,7 @@ router.post('/el/logout',  auth, async (req, res) => {
                 res.send('Sucessfully Logged out From all')
             }
        })
-        
+
     } catch (e) {
         console.log(e);
     }
