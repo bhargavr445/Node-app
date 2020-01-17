@@ -9,9 +9,7 @@ router.post('/task', (req, res)=>{
     }).catch(()=>{
         res.status(400).send();
     })
-})
-
-
+});
 
 router.get('/tasks', (req,res)=>{
     Task.find({}).then((data)=>{
@@ -19,7 +17,7 @@ router.get('/tasks', (req,res)=>{
     }).catch(()=>{
         res.sataus(500).send()
     })
-})
+});
 
 router.get('/tasks/:id', (req,res)=>{
     const id = req.params.id;
@@ -30,9 +28,13 @@ router.get('/tasks/:id', (req,res)=>{
         }
         res.send(data)
     }).catch((e)=>{
-    //    console.log(e)
         res.sataus(500).send()
     });
 });
 
-module.exports = router
+router.get('/api/testTask', (req, res)=>{
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+    res.json({message:'This is text message'});
+});
+
+module.exports = router;
