@@ -66,6 +66,10 @@ router.post('/api/el/signup', async (req, res) => {
                     })
                 } catch (e) {
                     console.log('Failed while creating token');
+                    res.status(401).send({
+                        'message': 'Failed',
+                        'resp': 'Bad Credential'
+                    });
                 }
             }
         });
@@ -88,6 +92,10 @@ router.post('/api/el/login', async (req, res) => {
     }, async (err, uresp) => {
         if (err) {
             console.log('#######################', err.message);
+            res.status(401).send({
+                'message': 'Failed',
+                'resp': 'Bad Credential'
+            });
         } else {
             console.log(uresp);
             console.log('Res Password', uresp._source.password);
