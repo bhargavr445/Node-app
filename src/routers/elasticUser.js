@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 const Person = require('../models/person');
 
 
-//this route will sign up and send token to UI.
+//this route will sign up and send token to UI.test git
 router.post('/api/el/signup', async (req, res) => {
     let p = new Person();
     p.email = 'myemail';
